@@ -2,68 +2,139 @@
 title: 'Project documentation template'
 disqus: hackmd
 ---
-Aplicación LomoAccesible
+
+Aplicación LomoAccesible v.02
 ===
 ![downloads](https://img.shields.io/github/downloads/atom/atom/total.svg)
 ![build](https://img.shields.io/appveyor/ci/:user/:repo.svg)
 ![chat](https://img.shields.io/discord/:serverId.svg)
 
-## Table of Contents
+## Tabla de contenidos
 
 [TOC]
 
-## Descripción
+## Descripción general
 
-Esta aplicación permite ubicar en todo momento a los alumnos con problemas motóricos, utilizando sus horarios y la asignación de aulas. Facilita que el personal auxiliar pueda localizar rápidamente dónde se encuentra un alumno en cada hora lectiva y así enviar al auxiliar más adecuado desde una lista previamente definida.
+**LomoAccesible** es una aplicación diseñada para facilitar la localización de estudiantes con movilidad reducida dentro de un centro educativo. A través del cruce de horarios, ubicaciones de aulas y disponibilidad del personal auxiliar, permite una respuesta rápida y eficaz en caso de necesidad.
 
-Datos necesarios
----
+La herramienta está orientada al uso por parte del personal de apoyo educativo, con el fin de mejorar la atención personalizada y optimizar la asistencia en los desplazamientos por el centro.
 
-Para su funcionamiento, la aplicación necesita las siguientes fuentes de datos:
+## Funcionalidades principales
 
-📋 Listado de alumnado con necesidades motóricas, con su identificación y nivel educativo.
+- Consulta automática de horarios del alumnado.
+- Localización prevista de cada estudiante según la franja horaria.
+- Selección del auxiliar más adecuado en función de su cercanía y disponibilidad.
+- Envío de notificaciones al personal auxiliar asignado.
+- Registro de incidencias y asistencias prestadas.
 
-🕒 Horario de cada alumno, que indique en qué aula debería encontrarse en cada hora.
+## Datos requeridos
 
-🧑‍🏫 Listado de aulas y su ubicación física dentro del centro.
+Para el correcto funcionamiento del sistema, se requieren las siguientes fuentes de datos estructuradas:
 
-👩‍⚕️ Listado de auxiliares disponibles, junto con sus turnos, disponibilidad y localización actual (si está geolocalizada o asignada a zonas).
+- 📋 **Listado de alumnado con necesidades motóricas**, incluyendo identificación, nivel educativo y posibles restricciones de movilidad.
+- 🕒 **Horarios individuales** que indiquen la asignación de aulas por franja lectiva.
+- 🧑‍🏫 **Listado de aulas**, con sus respectivas ubicaciones físicas en el centro (ej. edificio, planta, aula).
+- 👩‍⚕️ **Listado de auxiliares**, con turnos, zonas asignadas y geolocalización si está disponible.
+- 📌 (Opcional) Mapa del centro escolar con coordenadas físicas para integración con herramientas de localización.
 
+## Funcionamiento del sistema
 
-Funcionamiento
----
+1. El sistema accede al horario de un alumno para saber en qué aula debería encontrarse.
+2. Utiliza la ubicación física del aula para generar un mapa de posicionamiento estimado.
+3. Si se registra una petición de asistencia:
+   - Se muestra la posición esperada del alumno.
+   - Se selecciona el auxiliar más cercano y disponible.
+   - Se envía una notificación inmediata al auxiliar asignado.
 
-* Consulta automática del horario del alumno para determinar en qué aula debe estar en cada franja horaria.
-
-* Cruce con la ubicación física de las aulas para generar un mapa actualizado de localización esperada de cada estudiante.
-
-* En caso de incidencia o petición de asistencia, la aplicación:
-
-* Muestra en pantalla la localización prevista del alumno.
-
-* Sugiere el auxiliar más próximo y disponible.
-
-* Lanza una notificación o aviso interno al auxiliar asignado.
-
-Este sistema permite actuar con agilidad ante cualquier necesidad de desplazamiento o asistencia en el entorno educativo, y reduce la carga organizativa del equipo docente.
-
-
-
+El objetivo es actuar con agilidad y eficiencia, evitando esperas y mejorando la experiencia educativa del alumnado con movilidad reducida.
 
 ## Modelo de diseño
-Elejimos un modelo de diseño en cascada ya que es un proyecto corto con un equipo pequeño y no se esperan muchos cambios sobre la idea inicial. 
-Las fases y la temporalización podrían ser como sigue: 
+
+Se ha elegido el **modelo en cascada** por las siguientes razones:
+
+- El proyecto tiene un alcance bien definido.
+- Se trabaja con un equipo pequeño.
+- No se esperan cambios significativos durante el desarrollo.
+- La secuencia de etapas favorece una planificación clara y ordenada.
+
+### Fases y temporalización estimada
+
+- **Análisis de requisitos**: 3 días
+- **Diseño de la aplicación**: 5 días
+- **Desarrollo frontend**: 7 días
+- **Desarrollo backend**: 7 días (en paralelo con frontend)
+- **Pruebas y validación**: 3 días
+- **Documentación y despliegue**: 2 días
 
 ![image](https://hackmd.io/_uploads/rJgOQZPSxe.png)
 
-Roles 
----
-Seremos un pequeño equipo:
-Diseño de la aplicación: 5 días, a cargo del diseñador.
+## Roles en el equipo
 
-Programación Frontend: 7 días, a cargo del programador frontend.
+- 🎨 **Diseñador/a de interfaz** – 5 días
+- 💻 **Programador/a frontend** – 7 días
+- 🛠️ **Programador/a backend** – 7 días
+- 🗂️ **Responsable de documentación y control de versiones**
+- 🔄 Coordinación y seguimiento a través de **Trello** en formato Kanban.
 
-Programación Backend: 7 días, en paralelo con el frontend, a cargo del programador backend.
+### Herramienta de coordinación
 
-Para poder coordinarnos usaremos Trello que hemos configurado con un esquema Kanban
+Se ha configurado un tablero Trello con el método Kanban para gestionar las tareas del equipo:
+
 ![image](https://hackmd.io/_uploads/HJzVmZvSll.png)
+
+## Control de versiones
+
+Se utiliza **Git** como sistema de control de versiones, con el repositorio alojado en **GitHub**. La estructura recomendada es:
+
+- Rama principal (`main`) protegida.
+- Ramas de desarrollo por módulo (`frontend`, `backend`, `docs`).
+- Commits con mensajes claros siguiendo el estilo convencional (`feat:`, `fix:`, `docs:`).
+- Issues y pull requests para coordinar cambios entre miembros del equipo.
+
+## Diagrama de clases (UML)
+
+Se ha diseñado el siguiente **diagrama de clases** para modelar la lógica interna de la aplicación:
+
+```plantuml
+@startuml
+class Alumno {
+  - id: String
+  - nombre: String
+  - nivel: String
+  - horario: List<Horario>
+  + getUbicacionActual(): Aula
+}
+
+class Horario {
+  - diaSemana: String
+  - hora: String
+  - aula: Aula
+}
+
+class Aula {
+  - id: String
+  - nombre: String
+  - ubicacion: String
+}
+
+class Auxiliar {
+  - id: String
+  - nombre: String
+  - disponibilidad: Boolean
+  - zonaAsignada: String
+  + esDisponible(): Boolean
+}
+
+class SistemaAsistencia {
+  + localizarAlumno(idAlumno: String): Aula
+  + asignarAuxiliar(aula: Aula): Auxiliar
+  + notificar(auxiliar: Auxiliar, mensaje: String)
+}
+
+Alumno "1" -- "*" Horario
+Horario "*" --> "1" Aula
+SistemaAsistencia --> Alumno
+SistemaAsistencia --> Auxiliar
+SistemaAsistencia --> Aula
+@enduml
+
