@@ -1,97 +1,125 @@
 ---
-title: 'Project documentation template'
+title: 'LomoAccesible - Proyecto de Accesibilidad Educativa'
 disqus: hackmd
 ---
 
-Aplicación LomoAccesible v.02
-===
+# Aplicación LomoAccesible v.03
+
 ![downloads](https://img.shields.io/github/downloads/atom/atom/total.svg)
 ![build](https://img.shields.io/appveyor/ci/:user/:repo.svg)
 ![chat](https://img.shields.io/discord/:serverId.svg)
 
-## Tabla de contenidos
+---
 
-[TOC]
+## 📘 Descripción general
 
-## Descripción general
+**LomoAccesible** es una aplicación pensada para mejorar la accesibilidad de estudiantes con movilidad reducida en centros educativos. Permite conocer en tiempo real su localización prevista, asignar personal auxiliar y optimizar la atención educativa.
 
-**LomoAccesible** es una aplicación diseñada para facilitar la localización de estudiantes con movilidad reducida dentro de un centro educativo. A través del cruce de horarios, ubicaciones de aulas y disponibilidad del personal auxiliar, permite una respuesta rápida y eficaz en caso de necesidad.
+En esta **tercera iteración**, el proyecto evoluciona desde una idea funcional hacia una propuesta técnica más realista, incorporando lenguaje de programación, arquitectura, base de datos y estrategia de pruebas.
 
-La herramienta está orientada al uso por parte del personal de apoyo educativo, con el fin de mejorar la atención personalizada y optimizar la asistencia en los desplazamientos por el centro.
+---
 
-## Funcionalidades principales
+## 🆕 Mejoras implementadas en esta versión
 
-- Consulta automática de horarios del alumnado.
-- Localización prevista de cada estudiante según la franja horaria.
-- Selección del auxiliar más adecuado en función de su cercanía y disponibilidad.
-- Envío de notificaciones al personal auxiliar asignado.
-- Registro de incidencias y asistencias prestadas.
+- Selección justificada del lenguaje de programación.
+- Aplicación del patrón arquitectónico MVC.
+- Diseño del modelo de datos y base de datos relacional.
+- Inclusión del enfoque de testing.
+- Actualización del diagrama de clases UML.
+- Comparación con versiones anteriores.
+- Rúbricas de evaluación para profesorado, alumnado y autoevaluación.
 
-## Datos requeridos
+---
 
-Para el correcto funcionamiento del sistema, se requieren las siguientes fuentes de datos estructuradas:
+## 💻 Lenguaje de programación
 
-- 📋 **Listado de alumnado con necesidades motóricas**, incluyendo identificación, nivel educativo y posibles restricciones de movilidad.
-- 🕒 **Horarios individuales** que indiquen la asignación de aulas por franja lectiva.
-- 🧑‍🏫 **Listado de aulas**, con sus respectivas ubicaciones físicas en el centro (ej. edificio, planta, aula).
-- 👩‍⚕️ **Listado de auxiliares**, con turnos, zonas asignadas y geolocalización si está disponible.
-- 📌 (Opcional) Mapa del centro escolar con coordenadas físicas para integración con herramientas de localización.
+Se ha seleccionado **Python con Flask** como lenguaje y framework backend por las siguientes razones:
 
-## Funcionamiento del sistema
+- Facilidad de aprendizaje y sintaxis limpia.
+- Ligereza para proyectos educativos.
+- Buena documentación y soporte para REST APIs.
+- Compatible con ORM como SQLAlchemy.
+- Uso extendido en contextos educativos y prototipos rápidos.
 
-1. El sistema accede al horario de un alumno para saber en qué aula debería encontrarse.
-2. Utiliza la ubicación física del aula para generar un mapa de posicionamiento estimado.
-3. Si se registra una petición de asistencia:
-   - Se muestra la posición esperada del alumno.
-   - Se selecciona el auxiliar más cercano y disponible.
-   - Se envía una notificación inmediata al auxiliar asignado.
+---
 
-El objetivo es actuar con agilidad y eficiencia, evitando esperas y mejorando la experiencia educativa del alumnado con movilidad reducida.
+## 🏛️ Arquitectura propuesta: MVC
 
-## Modelo de diseño
+Se adopta el patrón **Modelo-Vista-Controlador (MVC)** para estructurar el proyecto:
 
-Se ha elegido el **modelo en cascada** por las siguientes razones:
+- **Modelo**: entidades como Alumno, Horario, Aula, Auxiliar.
+- **Vista**: interfaz web o aplicación para mostrar ubicación y asignaciones.
+- **Controlador**: gestiona entradas del usuario, peticiones y respuestas.
 
-- El proyecto tiene un alcance bien definido.
-- Se trabaja con un equipo pequeño.
-- No se esperan cambios significativos durante el desarrollo.
-- La secuencia de etapas favorece una planificación clara y ordenada.
+Ventajas:
 
-### Fases y temporalización estimada
+- Favorece la reutilización y el mantenimiento.
+- Facilita el testing y el desarrollo por capas.
+- Escalable a futuro si se necesita incorporar microservicios.
 
-- **Análisis de requisitos**: 3 días
-- **Diseño de la aplicación**: 5 días
-- **Desarrollo frontend**: 7 días
-- **Desarrollo backend**: 7 días (en paralelo con frontend)
-- **Pruebas y validación**: 3 días
-- **Documentación y despliegue**: 2 días
+---
 
-![image](https://hackmd.io/_uploads/rJgOQZPSxe.png)
+## 🧭 Diagrama de clases UML
+![image](https://hackmd.io/_uploads/H1GZp-PHge.png)
 
-## Roles en el equipo
+## 🧭 Diagrama de casos de uso
+![UseCase_LomoAccesible](https://hackmd.io/_uploads/S1wATWvBel.png)
 
-- 🎨 **Diseñador/a de interfaz** – 5 días
-- 💻 **Programador/a frontend** – 7 días
-- 🛠️ **Programador/a backend** – 7 días
-- 🗂️ **Responsable de documentación y control de versiones**
-- 🔄 Coordinación y seguimiento a través de **Trello** en formato Kanban.
+## 🧭 Mockups con Figma
+![image](https://hackmd.io/_uploads/B1BSRbDSgg.png)
 
-### Herramienta de coordinación
 
-Se ha configurado un tablero Trello con el método Kanban para gestionar las tareas del equipo:
+🗃️ Esquema de base de datos (SQL)
+![ERD_LomoAccesible](https://hackmd.io/_uploads/r1oLT-PHlg.png)
 
-![image](https://hackmd.io/_uploads/HJzVmZvSll.png)
+CREATE TABLE alumnos (
+    id INTEGER PRIMARY KEY,
+    nombre TEXT,
+    nivel TEXT,
+    movilidadReducida BOOLEAN
+);
 
-## Control de versiones
+CREATE TABLE aulas (
+    id INTEGER PRIMARY KEY,
+    nombre TEXT,
+    ubicacion TEXT
+);
 
-Se utiliza **Git** como sistema de control de versiones, con el repositorio alojado en **GitHub**. La estructura recomendada es:
+CREATE TABLE auxiliares (
+    id INTEGER PRIMARY KEY,
+    nombre TEXT,
+    turno TEXT,
+    disponible BOOLEAN
+);
 
-- Rama principal (`main`) protegida.
-- Ramas de desarrollo por módulo (`frontend`, `backend`, `docs`).
-- Commits con mensajes claros siguiendo el estilo convencional (`feat:`, `fix:`, `docs:`).
-- Issues y pull requests para coordinar cambios entre miembros del equipo.
+CREATE TABLE horarios (
+    id INTEGER PRIMARY KEY,
+    alumno_id INTEGER,
+    aula_id INTEGER,
+    dia TEXT,
+    hora TEXT,
+    FOREIGN KEY (alumno_id) REFERENCES alumnos(id),
+    FOREIGN KEY (aula_id) REFERENCES aulas(id)
+);
 
-## Diagrama de clases (UML)
+CREATE TABLE notificaciones (
+    id INTEGER PRIMARY KEY,
+    auxiliar_id INTEGER,
+    mensaje TEXT,
+    timestamp DATETIME,
+    FOREIGN KEY (auxiliar_id) REFERENCES auxiliares(id)
+);
+🧪 Enfoque de pruebas
+Se planifica la integración de distintos niveles de pruebas:
 
-Se ha diseñado el siguiente **diagrama de clases** para modelar la lógica interna de la aplicación:
-![image](https://hackmd.io/_uploads/BksX5ZwHxg.png)
+🔹 Pruebas unitarias
+Validan métodos como getUbicacionActual() o esDisponible().
+
+🔹 Pruebas de integración
+Comprueban que los módulos interactúan correctamente (ej. horario + aula).
+
+🔹 Pruebas funcionales
+Simulan el uso completo desde la localización del alumno hasta la notificación al auxiliar.
+
+🔹 Herramientas sugeridas:
+unittest, pytest, Postman, Selenium (para pruebas funcionales web).
