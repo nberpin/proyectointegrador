@@ -94,47 +94,4 @@ Se utiliza **Git** como sistema de control de versiones, con el repositorio aloj
 ## Diagrama de clases (UML)
 
 Se ha diseñado el siguiente **diagrama de clases** para modelar la lógica interna de la aplicación:
-
-```plantuml
-@startuml
-class Alumno {
-  - id: String
-  - nombre: String
-  - nivel: String
-  - horario: List<Horario>
-  + getUbicacionActual(): Aula
-}
-
-class Horario {
-  - diaSemana: String
-  - hora: String
-  - aula: Aula
-}
-
-class Aula {
-  - id: String
-  - nombre: String
-  - ubicacion: String
-}
-
-class Auxiliar {
-  - id: String
-  - nombre: String
-  - disponibilidad: Boolean
-  - zonaAsignada: String
-  + esDisponible(): Boolean
-}
-
-class SistemaAsistencia {
-  + localizarAlumno(idAlumno: String): Aula
-  + asignarAuxiliar(aula: Aula): Auxiliar
-  + notificar(auxiliar: Auxiliar, mensaje: String)
-}
-
-Alumno "1" -- "*" Horario
-Horario "*" --> "1" Aula
-SistemaAsistencia --> Alumno
-SistemaAsistencia --> Auxiliar
-SistemaAsistencia --> Aula
-@enduml
-
+![image](https://hackmd.io/_uploads/BksX5ZwHxg.png)
